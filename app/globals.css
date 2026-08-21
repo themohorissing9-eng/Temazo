@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-neutral-950 text-neutral-100;
+  }
+
+  audio {
+    @apply w-full;
+  }
+}
+
+/* Bases componibles (Tailwind v4 requiere @utility para poder usar @apply) */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:cursor-not-allowed
+    disabled:opacity-50;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg backdrop-blur-sm;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-900/30
+      hover:from-orange-400 hover:to-orange-500 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/5 text-neutral-200 hover:bg-white/10 active:scale-[0.98];
+  }
+
+  .btn-danger {
+    @apply btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20 active:scale-[0.98];
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-neutral-100 placeholder:text-neutral-500
+      focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-neutral-300;
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-1px, 1px); }
+  30% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, -1px); }
+  70% { transform: translate(1px, 1px); }
+  90% { transform: translate(-1px, 0); }
+}
+
+@utility animate-vibrate {
+  animation: vibrate 0.4s ease-in-out infinite;
+}
